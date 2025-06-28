@@ -2,13 +2,315 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Il Mio Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Portfolio di Marco - Sviluppatore Full Stack specializzato in React, Node.js e tecnologie moderne. Scopri i miei progetti e competenze." />
+    <meta name="keywords" content="sviluppatore, full stack, react, nodejs, javascript, portfolio, web developer, milano" />
+    <meta name="author" content="Marco" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://marco-portfolio.dev/" />
+    <meta property="og:title" content="Marco - Sviluppatore Full Stack" />
+    <meta property="og:description" content="Portfolio di Marco - Sviluppatore Full Stack specializzato in React, Node.js e tecnologie moderne." />
+    <meta property="og:image" content="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://marco-portfolio.dev/" />
+    <meta property="twitter:title" content="Marco - Sviluppatore Full Stack" />
+    <meta property="twitter:description" content="Portfolio di Marco - Sviluppatore Full Stack specializzato in React, Node.js e tecnologie moderne." />
+    <meta property="twitter:image" content="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.pexels.com" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Title -->
+    <title>Marco - Sviluppatore Full Stack | Portfolio</title>
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#3b82f6" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Marco",
+      "jobTitle": "Sviluppatore Full Stack",
+      "description": "Sviluppatore Full Stack appassionato di tecnologie moderne e design innovativo",
+      "url": "https://marco-portfolio.dev",
+      "image": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300",
+      "sameAs": [
+        "https://github.com/marco",
+        "https://linkedin.com/in/marco",
+        "https://twitter.com/marco"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Milano",
+        "addressCountry": "IT"
+      },
+      "email": "marco.developer@email.com",
+      "telephone": "+39 123 456 7890",
+      "knowsAbout": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Vue.js",
+        "TypeScript",
+        "Python",
+        "PostgreSQL",
+        "MongoDB",
+        "Docker",
+        "AWS"
+      ]
+    }
+    </script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/style.css" as="style" />
+    <link rel="preload" href="/src/main.js" as="script" />
+    
+    <!-- Critical CSS inline (for above-the-fold content) -->
+    <style>
+      /* Critical CSS for immediate rendering */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background-color: #ffffff;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* Loading spinner */
+      .loading-spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f0f9ff 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-spinner.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #e5e7eb;
+        border-top: 4px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .spinner-text {
+        margin-top: 20px;
+        color: #6b7280;
+        font-weight: 500;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loading-spinner">
+      <div>
+        <div class="spinner"></div>
+        <div class="spinner-text">Caricamento Portfolio...</div>
+      </div>
+    </div>
+    
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+      Vai al contenuto principale
+    </a>
+    
+    <!-- Main App Container -->
+    <div id="app" role="main" aria-label="Portfolio di Marco"></div>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-blue-700 hover:scale-110 z-40" aria-label="Torna in cima">
+      <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 transform translate-y-full transition-transform duration-300 z-50">
+      <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-sm">
+          <p>Questo sito utilizza cookie per migliorare l'esperienza utente. Continuando la navigazione accetti l'uso dei cookie.</p>
+        </div>
+        <div class="flex gap-2">
+          <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+            Accetta
+          </button>
+          <button id="decline-cookies" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+            Rifiuta
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scripts -->
     <script type="module" src="/src/main.js"></script>
+    
+    <!-- Additional functionality -->
+    <script>
+      // Loading spinner management
+      window.addEventListener('load', function() {
+        const spinner = document.getElementById('loading-spinner');
+        setTimeout(() => {
+          spinner.classList.add('hidden');
+          setTimeout(() => {
+            spinner.remove();
+          }, 500);
+        }, 800);
+      });
+      
+      // Back to top button
+      window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('back-to-top');
+        if (window.scrollY > 300) {
+          backToTop.style.opacity = '1';
+          backToTop.style.pointerEvents = 'auto';
+        } else {
+          backToTop.style.opacity = '0';
+          backToTop.style.pointerEvents = 'none';
+        }
+      });
+      
+      document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Cookie consent management
+      function showCookieBanner() {
+        const banner = document.getElementById('cookie-banner');
+        const hasConsent = localStorage.getItem('cookieConsent');
+        
+        if (!hasConsent) {
+          setTimeout(() => {
+            banner.style.transform = 'translateY(0)';
+          }, 2000);
+        }
+      }
+      
+      document.getElementById('accept-cookies').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        hideCookieBanner();
+      });
+      
+      document.getElementById('decline-cookies').addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'declined');
+        hideCookieBanner();
+      });
+      
+      function hideCookieBanner() {
+        const banner = document.getElementById('cookie-banner');
+        banner.style.transform = 'translateY(100%)';
+      }
+      
+      // Initialize cookie banner
+      showCookieBanner();
+      
+      // Performance monitoring
+      window.addEventListener('load', function() {
+        // Log performance metrics
+        if ('performance' in window) {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+        }
+      });
+      
+      // Error handling
+      window.addEventListener('error', function(e) {
+        console.error('JavaScript Error:', e.error);
+        // In production, you might want to send this to an error tracking service
+      });
+      
+      // Service Worker registration (for PWA capabilities)
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+      
+      // Accessibility improvements
+      document.addEventListener('keydown', function(e) {
+        // Skip links navigation
+        if (e.key === 'Tab') {
+          document.body.classList.add('keyboard-navigation');
+        }
+      });
+      
+      document.addEventListener('mousedown', function() {
+        document.body.classList.remove('keyboard-navigation');
+      });
+      
+      // Reduced motion support
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (prefersReducedMotion.matches) {
+        document.documentElement.style.setProperty('--transition-fast', '0ms');
+        document.documentElement.style.setProperty('--transition-normal', '0ms');
+        document.documentElement.style.setProperty('--transition-slow', '0ms');
+      }
+    </script>
+    
+    <!-- Google Analytics (replace with your tracking ID) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_TRACKING_ID');
+    </script>
+    -->
   </body>
 </html>
